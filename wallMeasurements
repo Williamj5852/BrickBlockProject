@@ -1,0 +1,33 @@
+    public static void wallMeasurements()
+    {
+    
+    String input;
+    double length = 0;
+    double width = 0;
+    double height = 0;
+    
+    // Prompt the user to enter the desired brick length
+    input = JOptionPane.showInputDialog("Enter the length of the wall: ");
+    
+    // Convert string to double
+    length = Double.parseDouble(input);
+    
+    
+    // Prompt the user to enter the desired brick width
+    input = JOptionPane.showInputDialog("Enter the width of the wall: ");
+    
+    // Convert string to double
+    width = Double.parseDouble(input);    
+    
+        
+    // Prompt the user to enter the desired brick height
+    input = JOptionPane.showInputDialog("Enter the height of the wall: ");
+    
+    // Convert string to double
+    height = Double.parseDouble(input);    
+    
+    // Display Information
+    JOptionPane.showMessageDialog(null,"Length: " + length + "\nWidth: " 
+    + width + "\nHeight: " + height);    
+           
+    }
