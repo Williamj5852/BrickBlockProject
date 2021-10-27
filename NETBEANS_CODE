@@ -86,4 +86,5 @@ public class BrickBlockCalc {
         
 
     }
+	//SEND USER TO VOID AREAS METHOD
 }
