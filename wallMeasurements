@@ -6,14 +6,14 @@
     double length = 0;
    
     // Prompt the user to enter the desired brick width
-    input = JOptionPane.showInputDialog("Enter the width of the wall: ");
+    input = JOptionPane.showInputDialog("Enter the width of the wall (ft): ");
     
     // Convert string to double
     width = Double.parseDouble(input);    
     
         
     // Prompt the user to enter the desired brick height
-    input = JOptionPane.showInputDialog("Enter the height of the wall: ");
+    input = JOptionPane.showInputDialog("Enter the height of the wall (ft): ");
     
     // Convert string to double
     height = Double.parseDouble(input);
@@ -23,12 +23,12 @@
     while(!stop) 
     {
     // Prompt the user to enter the desired brick length
-    input = JOptionPane.showInputDialog("Enter the length of the wall: ");
+    input = JOptionPane.showInputDialog("Enter the length of the wall (ft): ");
     
     // Convert string to double
     length = length + Double.parseDouble(input);
     
-    input = JOptionPane.showInputDialog("Do you want to enter the length of another wall? (yes/no): ");
+    input = JOptionPane.showInputDialog("Do you want to enter the length of another wall? (enter 'no' to stop): ");
     if(input.equals("no")) 
     {
         stop = true;
