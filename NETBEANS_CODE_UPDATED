@@ -77,63 +77,50 @@ public static void wallMeasurements()
         + wallWidth + " inches\nLengh: " + wallLength + " feet");
     }
     
-    public static void VoidDoors() {
-        String answer = "y";
-        //String answer2 = "n";
-       
-        answer = JOptionPane.showInputDialog("Are there any doors or windows needed?");
-        if(answer.equals("y"))
-        {
-            showOptions();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null,"Placeholder");
-        }
-       
-       
-    }
-    public static void showOptions()
-    {
-    String input;
-    double voidWidth;
-    double voidHeight;
-    double voidLength = 0;
-   
-    // Prompt the user to enter the desired doorframe width
-    input = JOptionPane.showInputDialog("Enter width of doorframe: ");
-    
-    // Convert string to double
-    voidWidth = Double.parseDouble(input);    
-    
-        
-    // Prompt the user to enter the desired brick height
-    input = JOptionPane.showInputDialog("Enter the height of doorframe: ");
-    
-    // Convert string to double
-    voidHeight = Double.parseDouble(input);
-    
-    
-    boolean stop = false;    
-    while(!stop) 
-    {
-    // Prompt the user to enter the desired doorframe length
-    input = JOptionPane.showInputDialog("Enter the length of the doorframe: ");
-    
-    // Convert string to double
-    voidLength = voidLength + Double.parseDouble(input);
-    
-    input = JOptionPane.showInputDialog("Do you want to enter the length of another doorframe? (yes/no): ");
-    if(input.equals("no")) 
-    {
-        stop = true;
-    }
-    }
+   public static void getVoids() {
+        Object[] options1 = { "Yes", "No" };
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Are there any door or window areas needed?"));
+        int result = JOptionPane.showOptionDialog(null, panel, "Void Areas", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
 
-    // Display Information
-    JOptionPane.showMessageDialog(null,"Height: " + voidHeight + "\nWidth: " 
-    + voidWidth + "\nLengh: " + voidLength);
+        if (result == JOptionPane.YES_OPTION){
+            calcVoids();
+        }
+        if (result == JOptionPane.NO_OPTION){
+            JOptionPane.showMessageDialog(null, "TEXT BUBBLE");
+        }
+    }
+    public static void calcVoids() {
+        String input;
+        int loops = 1;
+        //double voidWidth = wallWidth;//MAKE GLOBAL
+        double voidHeight = 0;
+        double voidLength = 0;
         
+        boolean stop = false;    
+        while(!stop) {
+            input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
+            voidHeight = voidHeight + Double.parseDouble(input);
 
+            input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
+            voidLength = voidLength + Double.parseDouble(input);
+
+            Object[] options1 = { "Yes", "No" };
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Do you want to enter another void area?"));                    
+            int result = JOptionPane.showOptionDialog(null, panel, "Void Areas", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+            if (result == JOptionPane.YES_OPTION){
+                input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
+                voidHeight = voidHeight + Double.parseDouble(input);
+
+                input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
+                voidLength = voidLength + Double.parseDouble(input);
+                
+                JOptionPane.showMessageDialog(null, "Total Void Areas Entered: " + loops);
+            }
+            if (result == JOptionPane.NO_OPTION){
+                stop = true;
+            }
+        }
     }
 }
