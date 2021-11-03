@@ -40,30 +40,41 @@ public class BrickBlockCalc {
         wallMeasurements();
     }   
     
-    public static void wallMeasurements() {
+public static void wallMeasurements() 
+    {
+        double wallHeight = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the desired wall (in): "));
+        double wallWidth = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the width of the desired wall (in): "));
+        
         String input;
-        double wallWidth = 0;
-        double wallHeight = 0;
         double wallLength = 0;
-
-        input = JOptionPane.showInputDialog("Enter the width of the desired wall: ");
-        wallWidth = Double.parseDouble(input);    
-
-        input = JOptionPane.showInputDialog("Enter the height of the desired wall: ");
-        wallHeight = Double.parseDouble(input);
-
-        boolean stop = false;    
-        while(!stop) {
-        input = JOptionPane.showInputDialog("From corner to corner, Enter the length of the desired wall: ");
+        
+        input = JOptionPane.showInputDialog("From corner to corner, enter the length of the desired wall: ");
         wallLength = wallLength + Double.parseDouble(input);
-
-        input = JOptionPane.showInputDialog("Do you want to enter the length of another wall? (yes/no): ");
-        if(input.equals("no"))
-            stop = true;
+        boolean stop = false;
+        while(!stop)
+        {
+            Object[] options1 = { "Yes", "No" };
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Would you like to enter the length of another wall (corner to corner)?"));
+            int result = JOptionPane.showOptionDialog(null, panel, "Wall Length", 
+            JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+            
+            if (result == JOptionPane.YES_OPTION)
+            {
+                input = JOptionPane.showInputDialog("From corner to corner, enter "
+                + "the length of the desired wall: " + "\nCurrent total length: " + wallLength +" ft.");
+                wallLength = wallLength + Double.parseDouble(input);
+            }
+            
+            if (result == JOptionPane.NO_OPTION)
+            {
+                stop = true;
+            }
+            
         }
-
-        JOptionPane.showMessageDialog(null,"Height: " + wallHeight + "\nWidth: " 
-        + wallWidth + "\nLengh: " + wallLength);
+        
+        JOptionPane.showMessageDialog(null,"Height: " + wallHeight + " inches\nWidth: " 
+        + wallWidth + " inches\nLengh: " + wallLength + " feet");
     }
     
     public static void VoidDoors() {
