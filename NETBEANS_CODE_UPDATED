@@ -11,7 +11,7 @@ public class BrickBlockCalc {
         //JUMPS TO METHOD TO GET WHATEVER COMES FIRST
         getBrick();
     }
-    public static void getBrick (){
+    public static void getBrick () {
         String input;
         String[] option = null;
         input = JOptionPane.showInputDialog(/*EDIT TEXT TO SHOW ALL BRICK DIMENSIONS*/"What bricks do you plan on using?");
@@ -20,15 +20,11 @@ public class BrickBlockCalc {
             //switch statement applies the variable for BRICK to chosen brick dimensions
             if (menuOption > 0 && menuOption < 6){
                     option = new String[menuOption];
-                //<editor-fold defaultstate="collapsed" desc="Switch">
+                //<editor-fold defaultstate="collapsed" desc="BrickOptions">
                 switch (menuOption){
                     case 1:
-                        //DIFFERENT BRICKS
-                        /*case 1:
-                            bl = #
-                            bw = #
-                            bh = #                     
-                        */
+                        //EXAMPLE ONLY
+                        double bl = 2, bw = 2, bh = 2;
                         break;
                     case 5:
                         break;
@@ -42,50 +38,34 @@ public class BrickBlockCalc {
             JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-#");
         }
         wallMeasurements();
+    }   
+    
+    public static void wallMeasurements() {
+        String input;
+        double wallWidth = 0;
+        double wallHeight = 0;
+        double wallLength = 0;
+
+        input = JOptionPane.showInputDialog("Enter the width of the desired wall: ");
+        wallWidth = Double.parseDouble(input);    
+
+        input = JOptionPane.showInputDialog("Enter the height of the desired wall: ");
+        wallHeight = Double.parseDouble(input);
+
+        boolean stop = false;    
+        while(!stop) {
+        input = JOptionPane.showInputDialog("From corner to corner, Enter the length of the desired wall: ");
+        wallLength = wallLength + Double.parseDouble(input);
+
+        input = JOptionPane.showInputDialog("Do you want to enter the length of another wall? (yes/no): ");
+        if(input.equals("no"))
+            stop = true;
         }
-    
-    public static void wallMeasurements()
-    {
-    String input;
-    double width = 0;
-    double height = 0;
-    double length = 0;
-   
-    // Prompt the user to enter the desired brick width
-    input = JOptionPane.showInputDialog("Enter the width of the wall: ");
-    
-    // Convert string to double
-    width = Double.parseDouble(input);    
-    
-        
-    // Prompt the user to enter the desired brick height
-    input = JOptionPane.showInputDialog("Enter the height of the wall: ");
-    
-    // Convert string to double
-    height = Double.parseDouble(input);
-    
-    boolean stop = false;    
-    while(!stop) 
-    {
-    // Prompt the user to enter the desired brick length
-    input = JOptionPane.showInputDialog("Enter the length of the wall: ");
-    
-    // Convert string to double
-    length = length + Double.parseDouble(input);
-    
-    input = JOptionPane.showInputDialog("Do you want to enter the length of another wall? (yes/no): ");
-    if(input.equals("no")) 
-    {
-        stop = true;
-    }
-    }
 
-    // Display Information
-    JOptionPane.showMessageDialog(null,"Height: " + height + "\nWidth: " 
-    + width + "\nLengh: " + length);
-        
-
+        JOptionPane.showMessageDialog(null,"Height: " + wallHeight + "\nWidth: " 
+        + wallWidth + "\nLengh: " + wallLength);
     }
+    
     public static void VoidDoors() {
         String answer = "y";
         //String answer2 = "n";
