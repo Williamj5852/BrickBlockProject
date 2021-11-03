@@ -1,43 +1,36 @@
-    public static void wallMeasurements()
+public static void wallMeasurements() 
     {
-    String input;
-    double width = 0;
-    double height = 0;
-    double length = 0;
-   
-    // Prompt the user to enter the desired brick width
-    input = JOptionPane.showInputDialog("Enter the width of the wall (ft): ");
-    
-    // Convert string to double
-    width = Double.parseDouble(input);    
-    
+        double wallHeight = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the desired wall (in): "));
+        double wallWidth = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the width of the desired wall (in): "));
         
-    // Prompt the user to enter the desired brick height
-    input = JOptionPane.showInputDialog("Enter the height of the wall (ft): ");
-    
-    // Convert string to double
-    height = Double.parseDouble(input);
-    
-    
-    boolean stop = false;    
-    while(!stop) 
-    {
-    // Prompt the user to enter the desired brick length
-    input = JOptionPane.showInputDialog("Enter the length of the wall (ft): ");
-    
-    // Convert string to double
-    length = length + Double.parseDouble(input);
-    
-    input = JOptionPane.showInputDialog("Do you want to enter the length of another wall? (enter 'no' to stop): ");
-    if(input.equals("no")) 
-    {
-        stop = true;
-    }
-    }
-
-    // Display Information
-    JOptionPane.showMessageDialog(null,"Height: " + height + "\nWidth: " 
-    + width + "\nLengh: " + length);
+        String input;
+        double wallLength = 0;
         
-
+        input = JOptionPane.showInputDialog("From corner to corner, enter the length of the desired wall: ");
+        wallLength = wallLength + Double.parseDouble(input);
+        boolean stop = false;
+        while(!stop)
+        {
+            Object[] options1 = { "Yes", "No" };
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Would you like to enter the length of another wall (corner to corner)?"));
+            int result = JOptionPane.showOptionDialog(null, panel, "Wall Length", 
+            JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+            
+            if (result == JOptionPane.YES_OPTION)
+            {
+                input = JOptionPane.showInputDialog("From corner to corner, enter "
+                + "the length of the desired wall: " + "\nCurrent total length: " + wallLength +" ft.");
+                wallLength = wallLength + Double.parseDouble(input);
+            }
+            
+            if (result == JOptionPane.NO_OPTION)
+            {
+                stop = true;
+            }
+            
+        }
+        
+        JOptionPane.showMessageDialog(null,"Height: " + wallHeight + " inches\nWidth: " 
+        + wallWidth + " inches\nLengh: " + wallLength + " feet");
     }
