@@ -1,0 +1,13 @@
+Object[] options1 = { "Yes", "No" };
+                JPanel panel = new JPanel();
+                panel.add(new JLabel("ENTER TEXT FOR USER TO READ HERE"));
+        
+                int result = JOptionPane.showOptionDialog(null, panel, "ENTER NAME OF TEXTBOX", JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.PLAIN_MESSAGE, null, options1, null);
+                
+                if (result == JOptionPane.YES_OPTION){
+                //ENTER CODE HERE
+                }
+                if (result == JOptionPane.NO_OPTION){
+                //ENTER CODE HERE
+                }
