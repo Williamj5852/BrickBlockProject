@@ -9,8 +9,8 @@ package brickblockproject;
 import javax.swing.*;
 
 public class BrickBlockProject {
-    
-public static double brickL, brickW, brickH, wallH, wallL, finalWallL, wallW, voidH, voidL, wallA, voidA, finalA;
+         
+public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, wallW, voidH, voidL, wallA, voidA, finalA;
 
     public static void main(String[] args) 
     {
@@ -109,8 +109,7 @@ public static double brickL, brickW, brickH, wallH, wallL, finalWallL, wallW, vo
             calcVoids();
         }
         if (result == JOptionPane.NO_OPTION){
-            JOptionPane.showMessageDialog(null, "TEXT BUBBLE");
-            //SEND TO CALC METHOD
+            areaCalculations();
         }
     }
     public static void calcVoids() {
@@ -146,7 +145,6 @@ public static double brickL, brickW, brickH, wallH, wallL, finalWallL, wallW, vo
             }
             
         }
-        
         JOptionPane.showMessageDialog(null,"Total Void Height: " + voidH +
                 " in.\nTotal Void Length: " + voidL + " in.");
         
@@ -157,13 +155,16 @@ public static double brickL, brickW, brickH, wallH, wallL, finalWallL, wallW, vo
     
     public static void areaCalculations()
     {
-        double wallArea = wallH * wallL;
-        double voidArea = voidH * voidL;
-        double totalArea = wallArea - voidArea;
+        wallA = wallH * wallL;
+        voidA = voidH * voidL;
+        finalA = wallA - voidA;
+        brickA = brickH * brickL;
+        double bricks = finalA / brickA;
         
-        JOptionPane.showMessageDialog(null,"Wall Area (inches squared): " + wallArea + 
-        "\nVoid Area (inches squared): " + voidArea + "\nTotal Area (inches squared): " 
-        + totalArea);
+        JOptionPane.showMessageDialog(null,"Wall Area (inches squared): " + wallA + 
+        "\nVoid Area (inches squared): " + voidA + "\nTotal Area (inches squared): " 
+        + finalA + "\nBricks Needed: " + bricks);
     }
    
 }
+    
