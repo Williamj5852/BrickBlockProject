@@ -40,7 +40,7 @@ public class BrickBlockCalc {
         wallMeasurements();
     }   
     
-public static void wallMeasurements() 
+    public static void wallMeasurements() 
     {
         double wallHeight = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the desired wall (in): "));
         double wallWidth = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the width of the desired wall (in): "));
@@ -75,8 +75,8 @@ public static void wallMeasurements()
         
         JOptionPane.showMessageDialog(null,"Height: " + wallHeight + " inches\nWidth: " 
         + wallWidth + " inches\nLengh: " + wallLength + " feet");
+        getVoids();
     }
-    
    public static void getVoids() {
         Object[] options1 = { "Yes", "No" };
         JPanel panel = new JPanel();
@@ -88,6 +88,7 @@ public static void wallMeasurements()
         }
         if (result == JOptionPane.NO_OPTION){
             JOptionPane.showMessageDialog(null, "TEXT BUBBLE");
+            //SEND TO CALC METHOD
         }
     }
     public static void calcVoids() {
