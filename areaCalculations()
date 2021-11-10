@@ -1,4 +1,4 @@
-public static void areaCaclulations()
+public static void areaCalculations()
     {
         double wallArea = wallH * wallL;
         double voidArea = voidH * voidL;
