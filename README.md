@@ -1,5 +1,0 @@
-# BrickBlockProject
-BBP
-ls
-dhbwieb
-
