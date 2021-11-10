@@ -48,34 +48,33 @@ public class BrickBlockCalc {
         String input;
         double wallLength = 0;
         
-        input = JOptionPane.showInputDialog("From corner to corner, enter the length of the desired wall: ");
+        input = JOptionPane.showInputDialog("From corner to corner, enter the length of the desired wall: (ft)");
         wallLength = wallLength + Double.parseDouble(input);
         boolean stop = false;
         while(!stop)
         {
             Object[] options1 = { "Yes", "No" };
             JPanel panel = new JPanel();
-            panel.add(new JLabel("Would you like to enter the length of another wall (corner to corner)?"));
+            panel.add(new JLabel("Would you like to enter the length of another wall?"));
             int result = JOptionPane.showOptionDialog(null, panel, "Wall Length", 
             JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
             
             if (result == JOptionPane.YES_OPTION)
             {
                 input = JOptionPane.showInputDialog("From corner to corner, enter "
-                + "the length of the desired wall: " + "\nCurrent total length: " + wallLength +" ft.");
+                + "the length of the desired wall: (ft)" + "\nCurrent total length: " + wallLength +" ft.");
                 wallLength = wallLength + Double.parseDouble(input);
             }
             
             if (result == JOptionPane.NO_OPTION)
             {
+                wallLength * 12;
                 stop = true;
             }
             
         }
-        
         JOptionPane.showMessageDialog(null,"Height: " + wallHeight + " inches\nWidth: " 
-        + wallWidth + " inches\nLengh: " + wallLength + " feet");
-        getVoids();
+        + wallWidth + " inches\nLengh in feet: " + wallLength + " feet" + "\nLength in inches: " + wallLengthInches + " inches");
     }
    public static void getVoids() {
         Object[] options1 = { "Yes", "No" };
