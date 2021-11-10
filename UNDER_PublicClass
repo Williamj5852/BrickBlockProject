@@ -1,0 +1,1 @@
+public static double brickL, brickW, brickH, wallH, wallL, wallW, voidH, voidL;
