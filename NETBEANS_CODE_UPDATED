@@ -1,12 +1,19 @@
 /* BrickBlock Project
  * Program gives an accurate estimate of needed bricks for a build  
- * Date Created: 10/20/21   //      Last Modified: 11/3/21 
+ * Date Created: 10/20/21   //      Last Modified: 11/10/21 
  * Jamison Williams, Kevin Patterson, Logan Sines
  */
-package brickblockcalc;
-import javax.swing.JOptionPane;
-public class BrickBlockCalc {
-    public static void main(String[] args) {
+
+package brickblockproject;
+
+import javax.swing.*;
+
+public class BrickBlockProject {
+    
+public static double brickL, brickW, brickH, wallH, wallL, finalWallL, wallW, voidH, voidL, wallA, voidA, finalA;
+
+    public static void main(String[] args) 
+    {
         System.out.println("Powering On...\n\n\n\n");
         //JUMPS TO METHOD TO GET WHATEVER COMES FIRST
         getBrick();
@@ -24,7 +31,7 @@ public class BrickBlockCalc {
                 switch (menuOption){
                     case 1:
                         //EXAMPLE ONLY
-                        double bl = 2, bw = 2, bh = 2;
+                        double bl = 2, bh = 2;
                         break;
                     case 5:
                         break;
@@ -42,14 +49,11 @@ public class BrickBlockCalc {
     
     public static void wallMeasurements() 
     {
-        double wallHeight = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the desired wall (in): "));
-        double wallWidth = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the width of the desired wall (in): "));
+        wallH = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the desired wall (in): "));
         
         String input;
-        double wallLength = 0;
-        
         input = JOptionPane.showInputDialog("From corner to corner, enter the length of the desired wall: (ft)");
-        wallLength = wallLength + Double.parseDouble(input);
+        wallL = wallL + Double.parseDouble(input);
         boolean stop = false;
         while(!stop)
         {
@@ -62,19 +66,20 @@ public class BrickBlockCalc {
             if (result == JOptionPane.YES_OPTION)
             {
                 input = JOptionPane.showInputDialog("From corner to corner, enter "
-                + "the length of the desired wall: (ft)" + "\nCurrent total length: " + wallLength +" ft.");
-                wallLength = wallLength + Double.parseDouble(input);
+                + "the length of the desired wall: (ft)" + "\nCurrent total length: " + wallL +" ft.");
+                wallL = wallL + Double.parseDouble(input);
             }
             
             if (result == JOptionPane.NO_OPTION)
             {
-                wallLength * 12;
+                finalWallL = wallL * 12;
                 stop = true;
             }
             
         }
-        JOptionPane.showMessageDialog(null,"Height: " + wallHeight + " inches\nWidth: " 
-        + wallWidth + " inches\nLengh in feet: " + wallLength + " feet" + "\nLength in inches: " + wallLengthInches + " inches");
+        JOptionPane.showMessageDialog(null,"Height: " + wallH + " inches\nLengh in feet: " + wallL + 
+                " feet" + "\nLength in inches: " + finalWallL + " inches");
+        getVoids();
     }
    public static void getVoids() {
         Object[] options1 = { "Yes", "No" };
@@ -92,35 +97,55 @@ public class BrickBlockCalc {
     }
     public static void calcVoids() {
         String input;
-        int loops = 1;
-        //double voidWidth = wallWidth;//MAKE GLOBAL
-        double voidHeight = 0;
-        double voidLength = 0;
         
-        boolean stop = false;    
-        while(!stop) {
-            input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
-            voidHeight = voidHeight + Double.parseDouble(input);
-
-            input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
-            voidLength = voidLength + Double.parseDouble(input);
-
+        input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
+        voidH = voidH + Double.parseDouble(input);
+        
+        input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
+        voidL = voidL + Double.parseDouble(input);
+        
+        boolean stop = false;
+        while(!stop)
+        {
             Object[] options1 = { "Yes", "No" };
             JPanel panel = new JPanel();
-            panel.add(new JLabel("Do you want to enter another void area?"));                    
-            int result = JOptionPane.showOptionDialog(null, panel, "Void Areas", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
-            if (result == JOptionPane.YES_OPTION){
-                input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
-                voidHeight = voidHeight + Double.parseDouble(input);
-
-                input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
-                voidLength = voidLength + Double.parseDouble(input);
-                
-                JOptionPane.showMessageDialog(null, "Total Void Areas Entered: " + loops);
+            panel.add(new JLabel("Would you like to enter another void?"));
+            int result = JOptionPane.showOptionDialog(null, panel, "Void Dimensions", 
+            JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+            
+            if (result == JOptionPane.YES_OPTION)
+            {
+               input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
+               voidH = voidH + Double.parseDouble(input);
+               
+               input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
+               voidL = voidL + Double.parseDouble(input);
             }
-            if (result == JOptionPane.NO_OPTION){
+            
+            if (result == JOptionPane.NO_OPTION)
+            {
                 stop = true;
             }
+            
         }
+        
+        JOptionPane.showMessageDialog(null,"Total Void Height (inches): " + voidH +
+                "in.\nTotal Void Length (inches): " + voidL + "in.");
+        
+        areaCalculations();
+        
+        }
+    
+    
+    public static void areaCalculations()
+    {
+        double wallArea = wallH * wallL;
+        double voidArea = voidH * voidL;
+        double totalArea = wallArea - voidArea;
+        
+        JOptionPane.showMessageDialog(null,"Wall Area (inches squared): " + wallArea + 
+        "\nVoid Area (inches squared): " + voidArea + "\nTotal Area (inches squared): " 
+        + totalArea);
     }
+   
 }
