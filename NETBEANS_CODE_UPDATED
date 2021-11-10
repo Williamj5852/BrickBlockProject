@@ -147,8 +147,8 @@ public static double brickL, brickW, brickH, wallH, wallL, finalWallL, wallW, vo
             
         }
         
-        JOptionPane.showMessageDialog(null,"Total Void Height (inches): " + voidH +
-                "in.\nTotal Void Length (inches): " + voidL + "in.");
+        JOptionPane.showMessageDialog(null,"Total Void Height: " + voidH +
+                " in.\nTotal Void Length: " + voidL + " in.");
         
         areaCalculations();
         
