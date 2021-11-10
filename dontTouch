@@ -1,0 +1,169 @@
+/* BrickBlock Project
+ * Program gives an accurate estimate of needed bricks for a build  
+ * Date Created: 10/20/21   //      Last Modified: 11/3/21 
+ * Jamison Williams, Kevin Patterson, Logan Sines
+ */
+package javaapplication2;
+    import javax.swing.*;
+public class JavaApplication2 {
+        
+public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, wallW, voidH, voidL, wallA, voidA, finalA;
+
+    public static void main(String[] args) 
+    {
+        System.out.println("Powering On...\n\n\n\n");
+        getBrick();
+    }
+    public static void getBrick () {
+        String input;
+        String[] option = null;
+        input = JOptionPane.showInputDialog("What bricks do you plan on using?\n1: Standard - Height(3 5/8 in) * Width(2 1/4 in) * Length(8 in)\n2: Queen      - Height(3 in)        * Width(2 3/4 in) * Length(7 5/8 in)\n3: Modular   - Height(3 5/8 in) * Width(2 1/4 in) * Length(7 5/8 in)\n4. Closure    - Height(3 5/8 in) * Width(3 5/8 in) * Length(7 5/8 in)\n5. Other\n6. Exit");
+        try {
+            int menuOption = Integer.parseInt(input);
+            //switch statement applies the variable for BRICK to chosen brick dimensions
+            if (menuOption > 0 && menuOption < 7){
+                    option = new String[menuOption];
+                //<editor-fold defaultstate="collapsed" desc="BrickOptions">
+                switch (menuOption){
+                    case 1:
+                        brickH = 4;
+                        brickL = 8.375;
+                        break;
+                    case 2:
+                        brickH = 3.375;
+                        brickL = 8;
+                        break;
+                    case 3:
+                        brickH = 4;
+                        brickL = 8;
+                        break;
+                    case 4:
+                        brickH = 4;
+                        brickL = 8;
+                        break;
+                    case 5:
+                        double brickH = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the brick you're using: (in)"));
+                        double brickL = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the length of the brick you're using: (in)"));
+                        break;
+                    case 6:
+                        JOptionPane.showMessageDialog(null, "Thank you, Have a great day!");
+                        System.exit(0);
+                        break;
+                }
+                //</editor-fold>
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-6");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-6");
+        }
+        wallMeasurements();
+    }   
+    
+    public static void wallMeasurements() 
+    {
+        wallH = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the desired wall (in): "));
+        
+        String input;
+        input = JOptionPane.showInputDialog("From corner to corner, enter the length of the desired wall: (ft)");
+        wallL = wallL + Double.parseDouble(input);
+        boolean stop = false;
+        while(!stop)
+        {
+            Object[] options1 = { "Yes", "No" };
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Would you like to enter the length of another wall?"));
+            int result = JOptionPane.showOptionDialog(null, panel, "Wall Length", 
+            JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+            
+            if (result == JOptionPane.YES_OPTION)
+            {
+                input = JOptionPane.showInputDialog("From corner to corner, enter "
+                + "the length of the desired wall: (ft)" + "\nCurrent total length: " + wallL +" ft.");
+                wallL = wallL + Double.parseDouble(input);
+            }
+            
+            if (result == JOptionPane.NO_OPTION)
+            {
+                finalWallL = wallL * 12;
+                stop = true;
+            }
+            
+        }
+        JOptionPane.showMessageDialog(null,"Height: " + wallH + " inches\nLengh in feet: " + wallL + 
+                " feet" + "\nLength in inches: " + finalWallL + " inches");
+        getVoids();
+    }
+   public static void getVoids() {
+        Object[] options1 = { "Yes", "No" };
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Are there any door or window areas needed?"));
+        int result = JOptionPane.showOptionDialog(null, panel, "Void Areas", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+
+        if (result == JOptionPane.YES_OPTION){
+            calcVoids();
+        }
+        if (result == JOptionPane.NO_OPTION){
+            voidH = 0;
+            voidL = 0;
+            areaCalc();
+        }
+    }
+    public static void calcVoids() {
+        String input;
+        
+        input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
+        voidH = voidH + Double.parseDouble(input);
+        
+        input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
+        voidL = voidL + Double.parseDouble(input);
+        
+        boolean stop = false;
+        while(!stop)
+        {
+            Object[] options1 = { "Yes", "No" };
+            JPanel panel = new JPanel();
+            panel.add(new JLabel("Would you like to enter another void?"));
+            int result = JOptionPane.showOptionDialog(null, panel, "Void Dimensions", 
+            JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options1, null);
+            
+            if (result == JOptionPane.YES_OPTION)
+            {
+               input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
+               voidH = voidH + Double.parseDouble(input);
+               
+               input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
+               voidL = voidL + Double.parseDouble(input);
+            }
+            
+            if (result == JOptionPane.NO_OPTION)
+            {
+                stop = true;
+            } 
+        }
+        JOptionPane.showMessageDialog(null,"Total Void Height: " + voidH +
+                " in.\nTotal Void Length: " + voidL + " in.");
+        
+        areaCalc();
+        }
+    public static void areaCalc()
+    {
+        //wallH = 101;
+        //wallL = 4870;
+        //voidH = 0;
+        //voidL = 0;
+        //brickH = 4;
+        //brickL = 8;
+        
+        wallA = wallH * wallL;
+        voidA = /*87736*/voidH * voidL;
+        finalA = wallA - voidA;
+        brickA = brickH * brickL;
+        double bricks = finalA / brickA;
+        
+        JOptionPane.showMessageDialog(null,"Wall Area (inches squared): " + wallA + 
+        "\nVoid Area (inches squared): " + voidA + "\nTotal Area (inches squared): " 
+        + finalA + "\nBricks Needed: " + bricks);
+    }
+}  
