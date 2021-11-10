@@ -95,8 +95,8 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
             }
             
         }
-        JOptionPane.showMessageDialog(null,"Height: " + wallH + " inches\nLengh in feet: " + wallL + 
-                " feet" + "\nLength in inches: " + finalWallL + " inches");
+        JOptionPane.showMessageDialog(null,"Height: " + wallH + " in\nLengh: " + wallL + 
+                " ft");
         getVoids();
     }
    public static void getVoids() {
