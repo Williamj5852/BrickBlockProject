@@ -21,28 +21,46 @@ public static double brickL, brickW, brickH, wallH, wallL, finalWallL, wallW, vo
     public static void getBrick () {
         String input;
         String[] option = null;
-        input = JOptionPane.showInputDialog(/*EDIT TEXT TO SHOW ALL BRICK DIMENSIONS*/"What bricks do you plan on using?");
+        input = JOptionPane.showInputDialog(/*EDIT TEXT TO SHOW ALL BRICK DIMENSIONS*/"What bricks do you plan on using?\n1: Standard - Height(3 5/8 in) * Width(2 1/4 in) * Length(8 in)\n2: Queen      - Height(3 in)        * Width(2 3/4 in) * Length(7 5/8 in)\n3: Modular   - Height(3 5/8 in) * Width(2 1/4 in) * Length(7 5/8 in)\n4. Closure    - Height(3 5/8 in) * Width(3 5/8 in) * Length(7 5/8 in)\n5. Other\n6. Exit");
         try {
             int menuOption = Integer.parseInt(input);
             //switch statement applies the variable for BRICK to chosen brick dimensions
-            if (menuOption > 0 && menuOption < 6){
+            if (menuOption > 0 && menuOption < 7){
                     option = new String[menuOption];
                 //<editor-fold defaultstate="collapsed" desc="BrickOptions">
                 switch (menuOption){
                     case 1:
-                        //EXAMPLE ONLY
-                        double bl = 2, bh = 2;
+                        brickH = 4;
+                        brickL = 8.375;
+                        break;
+                    case 2:
+                        brickH = 3.375;
+                        brickL = 8;
+                        break;
+                    case 3:
+                        brickH = 4;
+                        brickL = 8;
+                        break;
+                    case 4:
+                        brickH = 4;
+                        brickL = 8;
                         break;
                     case 5:
+                        double brickH = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the brick you're using: (in)"));
+                        double brickL = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the length of the brick you're using: (in)"));
+                        break;
+                    case 6:
+                        JOptionPane.showMessageDialog(null, "Thank you, Have a great day!");
+                        System.exit(0);
                         break;
                 }
                 //</editor-fold>
             }
             else {
-                JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-#");
+                JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-6");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-#");
+            JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-6");
         }
         wallMeasurements();
     }   
