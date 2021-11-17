@@ -47,7 +47,9 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
                         break;
                     case 5:
                         double brickH = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the brick you're using: (in)"));
+                        brickH = brickH + 0.375;                      
                         double brickL = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the length of the brick you're using: (in)"));
+                        brickL = brickL + 0.375;
                         break;
                     case 6:
                         JOptionPane.showMessageDialog(null, "Thank you, Have a great day!");
