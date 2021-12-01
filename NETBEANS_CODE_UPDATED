@@ -3,17 +3,11 @@
  * Date Created: 10/20/21   //      Last Modified: 11/10/21 
  * Jamison Williams, Kevin Patterson, Logan Sines
  */
-
 package brickblockproject;
-
 import javax.swing.*;
-
 public class BrickBlockProject {
-         
-public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, wallW, voidH, voidL, wallA, voidA, finalA;
-
-    public static void main(String[] args) 
-    {
+public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, wallW, item, voidH, voidL, wallA, voidA, finalA;
+    public static void main(String[] args) {
         System.out.println("Powering On...\n\n\n\n");
         //JUMPS TO METHOD TO GET WHATEVER COMES FIRST
         getBrick();
@@ -66,9 +60,7 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
         }
         wallMeasurements();
     }   
-    
-    public static void wallMeasurements() 
-    {
+    public static void wallMeasurements() {
         wallH = Double.parseDouble(JOptionPane.showInputDialog(null, "Enter the height of the desired wall (in): "));
         
         String input;
@@ -101,7 +93,7 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
                 " ft");
         getVoids();
     }
-   public static void getVoids() {
+    public static void getVoids() {
         Object[] options1 = { "Yes", "No" };
         JPanel panel = new JPanel();
         panel.add(new JLabel("Are there any door or window areas needed?"));
@@ -118,10 +110,12 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
         String input;
         
         input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
-        voidH = voidH + Double.parseDouble(input);
+        voidH = Double.parseDouble(input);
         
         input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
-        voidL = voidL + Double.parseDouble(input);
+        voidL = Double.parseDouble(input);
+            
+        voidA = voidA + (voidH * voidL);
         
         boolean stop = false;
         while(!stop)
@@ -135,10 +129,12 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
             if (result == JOptionPane.YES_OPTION)
             {
                input = JOptionPane.showInputDialog("Enter the height of void area needed: (in)");
-               voidH = voidH + Double.parseDouble(input);
+               voidH = Double.parseDouble(input);
                
                input = JOptionPane.showInputDialog("Enter the length of the void area needed: (in)");
-               voidL = voidL + Double.parseDouble(input);
+               voidL = Double.parseDouble(input);
+               
+               voidA = voidA + (voidH * voidL);
             }
             
             if (result == JOptionPane.NO_OPTION)
@@ -148,17 +144,14 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
             
         }
         JOptionPane.showMessageDialog(null,"Total Void Height: " + voidH +
-                " in.\nTotal Void Length: " + voidL + " in.");
+                " in.\nTotal Void Length: " + voidL + " in.\nTotal Void Area: " + voidA);
         
         areaCalculations();
         
         }
-    
-    
     public static void areaCalculations()
     {
         wallA = wallH * wallL;
-        voidA = voidH * voidL;
         finalA = wallA - voidA;
         brickA = brickH * brickL;
         double bricks = finalA / brickA;
@@ -166,7 +159,5 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
         JOptionPane.showMessageDialog(null,"Wall Area (inches squared): " + wallA + 
         "\nVoid Area (inches squared): " + voidA + "\nTotal Area (inches squared): " 
         + finalA + "\nBricks Needed: " + bricks);
-    }
-   
+    }   
 }
-    
