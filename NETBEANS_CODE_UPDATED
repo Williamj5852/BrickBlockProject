@@ -149,8 +149,7 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
         areaCalculations();
         
         }
-    public static void areaCalculations()
-    {
+    public static void areaCalculations() {
         wallA = wallH * wallL;
         finalA = wallA - voidA;
         brickA = brickH * brickL;
