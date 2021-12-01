@@ -153,7 +153,7 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
         wallA = wallH * wallL;
         finalA = wallA - voidA;
         brickA = brickH * brickL;
-        double bricks = finalA / brickA;
+        double bricks = Math.ceil(finalA / brickA);
         
         JOptionPane.showMessageDialog(null,"Wall Area (inches squared): " + wallA + 
         "\nVoid Area (inches squared): " + voidA + "\nTotal Area (inches squared): " 
