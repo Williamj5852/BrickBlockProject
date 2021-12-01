@@ -1,12 +1,12 @@
 /* BrickBlock Project
  * Program gives an accurate estimate of needed bricks for a build  
- * Date Created: 10/20/21   //      Last Modified: 12/1/21 
+ * Date Created: 10/20/21   //      Last Modified: 11/10/21 
  * Jamison Williams, Kevin Patterson, Logan Sines
  */
 package brickblockproject;
 import javax.swing.*;
 public class BrickBlockProject {
-public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, wallW, item, voidH, voidL, wallA, voidA, finalA;
+public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, wallW, item, voidH, voidL, wallA, voidA, finalA, overage;
     public static void main(String[] args) {
         System.out.println("Powering On...\n\n\n\n");
         //JUMPS TO METHOD TO GET WHATEVER COMES FIRST
@@ -150,13 +150,45 @@ public static double brickL, brickW, brickH, brickA, wallH, wallL, finalWallL, w
         
         }
     public static void areaCalculations() {
+        String input;
+        String[] opt = null;  
+        input = JOptionPane.showInputDialog("Would you like to add a brick overage?\nRecommended Overage (5-15%)\n1: 5%\n2: 10%\n3: 15%\n4: No\n(Type a number 1-4)");
+        try {
+            int menuOption = Integer.parseInt(input);
+            if (menuOption > 0 && menuOption < 5){
+                    opt = new String[menuOption];
+                //<editor-fold defaultstate="collapsed" desc="brickOverage">
+                switch (menuOption){
+                    case 1:
+                        overage = 0.05;
+                        break;
+                    case 2:
+                        overage = 0.10;
+                        break;
+                    case 3:
+                        overage = 0.15;
+                        break;
+                    case 4:
+                        overage = 0;
+                        break;
+                }
+                //</editor-fold>
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-4");            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Your input was invalid\nPlease type a number 1-4");
+        }
+        
         wallA = wallH * wallL;
         finalA = wallA - voidA;
         brickA = brickH * brickL;
         double bricks = Math.ceil(finalA / brickA);
+        overage = bricks * overage;
+        bricks = bricks + overage;
         
         JOptionPane.showMessageDialog(null,"Wall Area (inches squared): " + wallA + 
         "\nVoid Area (inches squared): " + voidA + "\nTotal Area (inches squared): " 
         + finalA + "\nBricks Needed: " + bricks);
-    }   
+    }
 }
